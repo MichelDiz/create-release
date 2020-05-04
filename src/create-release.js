@@ -20,6 +20,8 @@ async function run() {
     const draft = core.getInput('draft', { required: false }) === 'true';
     const prerelease = core.getInput('prerelease', { required: false }) === 'true';
 
+    const commitish = core.getInput('commitish', { required: false }) || context.sha;
+
     const bodyPath = core.getInput('body_path', { required: false });
     let bodyFileContent = null;
     if (bodyPath !== '' && !!bodyPath) {
@@ -40,7 +42,8 @@ async function run() {
       name: releaseName,
       body: bodyFileContent || body,
       draft,
-      prerelease
+      prerelease,
+      target_commitish: commitish
     });
 
     // Get the ID, html_url, and upload URL for the created Release from the response
