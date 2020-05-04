@@ -7901,6 +7901,7 @@ async function run() {
     core.setOutput('id', releaseId);
     core.setOutput('html_url', htmlUrl);
     core.setOutput('upload_url', uploadUrl);
+    core.setOutput('tag', tag);
   } catch (error) {
     core.setFailed(error.message);
   }
